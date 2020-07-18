@@ -1,0 +1,68 @@
+<h1 style="text-align: center;"><span style="background-color: #ffffff;">Anonymous`s Custom CFW</span></h1>
+<p></p>
+<div><noscript><span style="background-color: rgb(255, 255, 255);" data-mce-style="background-color: #ffffff;"><span style="background-color: rgb(255, 204, 153);" data-mce-style="background-color: #ffcc99;">This website (despite it's look) requires some very simple JavaScript which is embedded in this HTML.</span></span></noscript><hr /><form action="/cfw">
+<ul>
+<li><span style="background-color: #ffffff;"><label><b>Base version of your firmware:</b><select name="version">
+<option value="DRV143">1.4.3</option>
+<option value="DRV142">1.4.2</option>
+<option value="DRV141">1.4.1</option>
+<option value="DRV140">1.4.0</option>
+<option value="DRV138" selected="selected">1.3.8</option>
+<option value="DRV134">1.3.4</option>
+<option value="DRV130">1.3.0</option>
+</select></label></span>
+<p><span style="background-color: #ffffff;">1.3.8 is recommended over 1.4.0, it provides a much smoother riding experience.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Auto-KERS min speed:</b><input name="kers_min_speed" type="number" step="0.1" min="0" max="100" value="6.0" disabled="disabled" />&nbsp;km/h</label><label><input type="checkbox" onchange="CheckForm('kers_min_speed', this);" />Patch?</label></span>
+<p><span style="background-color: #ffffff;">The scooter will start braking by itself when it goes above this speed and you're not accelerating.</span><br /><span style="background-color: #ffffff;"> If you want "KERS OFF" then just put this to 40&nbsp;km/h. You will still have recuperative braking when using the brake lever.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Patch speed control params?</b><input type="checkbox" name="speed_params" onchange="CheckForm('speed_normal_kmh', this); CheckForm('speed_normal_phase', this); CheckForm('speed_normal_battery', this); CheckForm('speed_eco_kmh', this); CheckForm('speed_eco_phase', this); CheckForm('speed_eco_battery', this);" /></label></span>
+<p><span style="background-color: #ffffff;"><label>Normal max speed: <input name="speed_normal_kmh" type="number" step="1" min="0" max="100" value="28" disabled="disabled" />&nbsp;km/h</label></span><br /><span style="background-color: #ffffff;"><label>Normal max phase current: <input name="speed_normal_phase" type="number" step="1" min="0" max="65535" value="32000" disabled="disabled" />&nbsp;mA</label></span><br /><span style="background-color: #ffffff;"><label>Normal max battery current: <input name="speed_normal_battery" type="number" step="1" min="0" max="65535" value="17000" disabled="disabled" />&nbsp;mA</label></span></p>
+<p><span style="background-color: #ffffff;"><label>Eco max speed: <input name="speed_eco_kmh" type="number" step="1" min="0" max="100" value="22" disabled="disabled" />&nbsp;km/h</label></span><br /><span style="background-color: #ffffff;"><label>Eco max phase current: <input name="speed_eco_phase" type="number" step="1" min="0" max="65535" value="17000" disabled="disabled" />&nbsp;mA</label></span><br /><span style="background-color: #ffffff;"><label>Eco max battery current: <input name="speed_eco_battery" type="number" step="1" min="0" max="65535" value="7000" disabled="disabled" />&nbsp;mA</label></span></p>
+<p><span style="background-color: #ffffff;">For Smoothness: Stock (10S) battery: Max 31 km/h, 12S battery: Max 36 km/h</span><br /><span style="background-color: #ffffff;"> To convert the old power constant to mA, use (51575/constant)*17000</span><br /><span style="background-color: #ffffff;"> Motor phases are PWM controlled and instantaneous current exceeds the average. As a rough guide, use 2.0-2.5x battery current.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Patch brake lever params?</b><input type="checkbox" name="brake_params" onchange="CheckForm('brake_limit', this); CheckForm('brake_i_min', this); CheckForm('brake_i_max', this);" /></label></span>
+<p><span style="background-color: #ffffff;"><label>Lever virtual limit (1-130): <input name="brake_limit" type="number" step="1" min="1" max="130" value="115" disabled="disabled" /></label></span><br /><span style="background-color: #ffffff;"><label>Minimum phase current: <input name="brake_i_min" type="number" step="1" min="0" max="65535" value="8000" disabled="disabled" onchange="GetForm('brake_i_max').min = this.value;" />&nbsp;mA</label></span><br /><span style="background-color: #ffffff;"><label>Maximum phase current: <input name="brake_i_max" type="number" step="1" min="8000" max="65535" value="30000" disabled="disabled" />&nbsp;mA</label></span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Motor start speed:</b><input name="motor_start_speed" type="number" step="0.01" min="0" max="100" value="5.0" disabled="disabled" />&nbsp;km/h</label><label><input type="checkbox" onchange="CheckForm('motor_start_speed', this);" />Patch?</label></span>
+<p><span style="background-color: #ffffff;">Minimum speed in km/h before the engine will start.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Cruise control delay:</b><input name="cruise_control_delay" type="number" step="0.1" min="0.1" max="20" value="5.0" disabled="disabled" />&nbsp;seconds</label><label><input type="checkbox" onchange="CheckForm('cruise_control_delay', this);" />Patch?</label></span><br />
+<p><span style="background-color: #ffffff;">How many seconds it takes for cruise control to kick in.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Cruise control no beep:</b><input type="checkbox" name="cruise_control_nobeep" /></label></span><br />
+<p><span style="background-color: #ffffff;">Disables beep sound when cruise control enables.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Instant mode switch:</b><input type="checkbox" name="instant_eco_switch" /></label></span>
+<p><span style="background-color: #ffffff;">Switch instantly between Eco and Normal mode while driving.</span><br /><span style="background-color: #ffffff;"> Warning! This can be very sudden and cause injury!</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Boot with ECO mode:</b><input type="checkbox" name="boot_with_eco" /></label></span>
+<p><span style="background-color: #ffffff;">The scooter will always start in Eco mode.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Russian throttle algorithm (from CFW):</b><input type="checkbox" name="russian_throttle" /></label></span>
+<p><span style="background-color: #ffffff;">Changes the throttle algorithm from speed-control to power-control.</span><br /><span style="background-color: #ffffff;"> Ignores speed control params.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Battery voltage limit:</b><input name="voltage_limit" type="number" step="0.01" min="43.01" max="100.00" value="43.01" disabled="disabled" />&nbsp;Volt</label><label><input type="checkbox" onchange="CheckForm('voltage_limit', this);" />Patch?</label></span>
+<p><span style="background-color: #ffffff;">If you want to connect a custom battery with a higher voltage.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Remove hard speed limit of 35&nbsp;km/h:</b><input type="checkbox" name="remove_hard_speed_limit" /></label></span>
+<p><span style="background-color: #ffffff;">Removes code which checks that the speed is below 34.78km/h (12000/345).</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Remove charging mode:</b><input type="checkbox" name="remove_charging_mode" /></label></span>
+<p><span style="background-color: #ffffff;">Fixes issue of scooter going into charge mode with an external battery connected in parallel.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Stay on when scooter is locked:</b><input type="checkbox" name="stay_on_locked" /></label></span>
+<p><span style="background-color: #ffffff;">Disables auto shutdown when the scooter is locked so it stays on forever.</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Change ESC&lt;-&gt;BMS baud rate to 76800:</b><input type="checkbox" name="bms_uart_76800" /></label></span>
+<p><span style="background-color: #ffffff;">Only if you use the <a href="https://github.com/BotoX/xiaomi-m365-compatible-bms" target="_blank" style="background-color: #ffffff;">compatible open source BMS</a>!</span></p>
+</li>
+<li><span style="background-color: #ffffff;"><label><b>Wheel speed multiplier:</b><input name="wheel_speed_const" type="number" step="1" min="200" max="500" value="345" disabled="disabled" /></label><label><input type="checkbox" onchange="CheckForm('wheel_speed_const', this);" />Patch?</label></span>
+<p><span style="background-color: #ffffff;">For 10" wheels use 315, don't change otherwise.</span></p>
+</li>
+</ul>
+<hr />
+<p><span style="background-color: #ffffff;">Make sure to double check all of your entered values before submitting!</span><br /><span style="background-color: #ffffff;"><b>I AM RESPONSIBLE FOR THE ENTERED VALUES:</b><input type="submit" value="Patch!" /><button type="button" onclick="Share();">Share</button></span></p>
+</form>
+<p><br /><br /></p>
+</div>
